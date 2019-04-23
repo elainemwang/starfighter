@@ -21,11 +21,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
     private Alien alienOne;
     private Alien alienTwo;
 
-    /* uncomment once you are ready for this part
-	 *
-        private AlienHorde horde;
-	private Bullets shots;
-     */
+    // uncomment once you are ready for this part
+    private AlienHorde horde;
+    private Bullets shots;
+
     private boolean[] keys;
     private BufferedImage back;
 
@@ -36,9 +35,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
         //instantiate other instance variables
         //Ship, Alien
+        horde = new AlienHorde(5);
+        shots = new Bullets();
+        
         ship = new Ship(200, 200, 100, 100, 5);
-        alienOne = new Alien(100,100);
-        alienTwo = new Alien(200,100);
+        alienOne = new Alien(100, 100);
+        alienTwo = new Alien(200, 100);
         
 
         this.addKeyListener(this);
@@ -69,7 +71,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         graphToBack.drawString("StarFighter ", 25, 50);
         graphToBack.setColor(Color.BLACK);
         graphToBack.fillRect(0, 0, 800, 600);
-        
+
         boolean shot = false;
 
         if (keys[0] == true) {
@@ -84,19 +86,26 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         if (keys[3] == true) {
             ship.move("DOWN");
         }
-        if(keys[4] == true){
-            
+        if (keys[4] == true) {
+            shots.add(new Ammo(ship.getX()+ship.getWidth()/2,ship.getY()));
         }
 
         //add code to move Ship, Alien, etc.
         ship.draw(graphToBack);
-        alienOne.draw(graphToBack);
-        alienTwo.draw(graphToBack);
         
+        shots.drawEmAll(graphToBack);
+        shots.moveEmAll();
         
+        horde.drawEmAll(graphToBack);
+        horde.moveEmAll();
         
+        //alienOne.draw(graphToBack);
+        //alienTwo.draw(graphToBack);
 
-        //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
+        //add in collision detection to see if Bullets hit the Aliens and if Aliens hit the Ship
+        horde.removeDeadOnes(shots.getList());
+        
+        
         
         twoDGraph.drawImage(back, null, 0, 0);
     }

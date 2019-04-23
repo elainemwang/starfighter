@@ -53,6 +53,18 @@ public class Alien extends MovingThing {
 
     public void move(String direction) {
         //add code here
+        if(direction.equals("LEFT")){
+            setX(getX()-speed);
+        }
+        if(direction.equals("RIGHT")){
+            setX(getX()+speed);
+        }
+        if(direction.equals("UP")){
+            setY(getY()-speed);
+        }
+        if(direction.equals("DOWN")){
+            setY(getY()+speed);
+        }
         
     }
 

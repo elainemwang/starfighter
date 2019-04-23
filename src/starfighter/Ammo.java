@@ -19,18 +19,20 @@ public class Ammo extends MovingThing {
 
     public Ammo(int x, int y) {
         //add code
-        this(x,y,2);
+        this(x,y,1);
     }
 
     public Ammo(int x, int y, int s) {
         //add code
         super(x,y);
+        setWidth(5);
+        setHeight(5);
         speed = s;
     }
 
     public void setSpeed(int s) {
         //add code
-        speed = 2;
+        speed = s;
     }
 
     public int getSpeed() {
@@ -39,7 +41,9 @@ public class Ammo extends MovingThing {
 
     public void draw(Graphics window) {
         //add code to draw the ammo
-        window.drawRect(getX(), getY(), getWidth(), getHeight());
+        window.setColor(Color.YELLOW);
+        window.fillRect(getX(), getY(), getWidth(), getHeight());
+
         
     }
 
