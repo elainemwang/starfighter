@@ -16,11 +16,16 @@ public class AlienHorde {
     private List<Alien> aliens;
 
     public AlienHorde(int size) {
-        int x = 100;
+        int x = 35;
+        int row = 1;
         aliens = new ArrayList<Alien>();
-        for(int i = 0; i < size; i++){
-            add(new Alien(x,100));
+        for(int i = 1; i <= size; i++){
+            add(new Alien(x,row * 50));
             x+=100;
+            if(i%8==0&&i!=0){
+                row++;
+                x = 35;
+            }
         }
     }
 
@@ -36,7 +41,12 @@ public class AlienHorde {
 
     public void moveEmAll() {
         for(Alien a : aliens){
-            a.move("DOWN");
+            if(a.getY()<700){
+                a.move("DOWN");
+            }
+            else{
+                a.setY(0);
+            }
         }
     }
     

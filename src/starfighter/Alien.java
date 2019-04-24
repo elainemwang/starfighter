@@ -21,7 +21,7 @@ public class Alien extends MovingThing {
 
     public Alien(int x, int y) {
         //add code here
-        this(x,y,30,30,0);
+        this(x,y,30,30,1);
 
     }
 
