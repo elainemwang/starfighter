@@ -19,7 +19,7 @@ public class Ammo extends MovingThing {
 
     public Ammo(int x, int y) {
         //add code
-        this(x,y,1);
+        this(x,y,5);
     }
 
     public Ammo(int x, int y, int s) {

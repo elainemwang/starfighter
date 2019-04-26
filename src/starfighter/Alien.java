@@ -14,6 +14,7 @@ public class Alien extends MovingThing {
 
     private int speed;
     private Image image;
+    public String dir = "RIGHT";
 
     public Alien() {
         this(0, 0, 30, 30, 0);

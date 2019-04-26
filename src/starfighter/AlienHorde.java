@@ -40,13 +40,19 @@ public class AlienHorde {
     }
 
     public void moveEmAll() {
+        int down = 100;
+        
         for(Alien a : aliens){
-            if(a.getY()<700){
-                a.move("DOWN");
+            if(a.getX()>800){
+                a.dir = "LEFT";
+                a.setY(a.getY()+down);
             }
-            else{
-                a.setY(0);
+            else if(a.getX()<0){
+                a.dir = "RIGHT";
+                a.setY(a.getY()+down);
             }
+            a.move(a.dir);
+        
         }
     }
     
@@ -56,14 +62,17 @@ public class AlienHorde {
 
     public void removeDeadOnes(List<Ammo> shots) {
         List<Alien> removeAl = new ArrayList<Alien>();
+        List<Ammo> removeBul = new ArrayList<Ammo>();
         for(Ammo a : shots){
             for(Alien al : aliens){
                 if((a.getX()>al.getX()&&a.getX()<al.getX()+al.getWidth())&&(a.getY()<al.getY()+al.getHeight()&&a.getY()>al.getY())){
                     removeAl.add(al);
+                    removeBul.add(a);
                 }
             }
         }
         aliens.removeAll(removeAl);
+        shots.removeAll(removeBul);
     }
     
     public List<Alien> getList() {
